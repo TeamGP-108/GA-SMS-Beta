@@ -1,0 +1,692 @@
+{
+  "variables": {
+    "ua1": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "ua2": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+    "ua3": "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0",
+    "ua4": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0",
+    "ua5": "Mozilla/5.0 (Linux; Android 14; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Mobile Safari/537.36",
+    "ua6": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Mobile/15E148 Safari/604.1",
+    "ua7": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "ua8": "Mozilla/5.0 (Linux; Android 14; SM-G999B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Mobile Safari/537.36",
+    "ua9": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "ua10": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Edge/132.0.0.0",
+    "ua11": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1",
+    "s_c_u1": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"134\", \"Google Chrome\";v=\"134\"",
+    "s_c_u2": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"134\", \"Google Chrome\";v=\"134\""
+  },
+  "apis": {
+    "api_1": {
+      "url": "https://go-app.paperfly.com.bd/merchant/api/react/registration/request_registration.php",
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "device_identifier": "undefined",
+        "device_name": "undefined",
+        "origin": "https://go.paperfly.com.bd",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://go.paperfly.com.bd/",
+        "sec-ch-ua": "s_c_u1",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua2"
+      },
+      "body": "{\"full_name\":\"Test User\",\"company_name\":\"Test\",\"email_address\":\"test@test.com\",\"phone_number\":\"{number}\"}"
+    },
+    "api_2": {
+      "url": "https://api.ghoorilearning.com/api/auth/signup/otp",
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://ghoorilearning.com",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://ghoorilearning.com/",
+        "sec-ch-ua": "s_c_u1",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua2"
+      },
+      "body": "{\"mobile_no\":\"{number}\"}"
+    },
+    "api_3": {
+      "url": "https://doctime.com.bd/api/v1/otp/send",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"phone\":\"{number}\"}"
+    },
+    "api_4": {
+      "url": "https://api-gateway.sundarbancourierltd.com/graphql",
+      "headers": {
+        "accept": "*/*",
+        "accept-language": "en-US,en;q=0.9",
+        "authorization": "",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://customer.sundarbancourierltd.com",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://customer.sundarbancourierltd.com/",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua1"
+      },
+      "body": "{\"operationName\":\"CreateAccessToken\",\"variables\":{\"accessTokenFilter\":{\"userName\":\"{number}\"}},\"query\":\"mutation CreateAccessToken($accessTokenFilter: AccessTokenInput!) { createAccessToken(accessTokenFilter: $accessTokenFilter) { message statusCode result { phone otpCounter __typename } __typename } }\"}"
+    },
+    "api_5": {
+      "url": "https://api.apex4u.com/api/auth/login",
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://apex4u.com",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://apex4u.com/",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phoneNumber\":\"{number}\"}"
+    },
+    "api_6": {
+      "url": "https://webapi.robi.com.bd/api/v1/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone_number\":\"{number}\",\"type\":\"doorstep\"}",
+      "method": "post"
+    },
+    "api_7": {
+      "url": "https://web-api.banglalink.net/api/v1/validate/{number}",
+      "headers": {
+        "user-agent": "ua1",
+        "accept": "application/json"
+      },
+      "method": "get"
+    },
+    "api_8": {
+      "url": "https://web-api.banglalink.net/api/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"mobile\":\"{number}\"}"
+    },
+    "api_9": {
+      "url": "https://webloginda.grameenphone.com/api/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"msisdn\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_10": {
+      "url": "https://webapi.robi.com.bd/api/v1/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone_number\":\"{number}\",\"type\":\"my_offer\"}",
+      "method": "post"
+    },
+    "api_11": {
+      "url": "https://da-api.robi.com.bd/da-nll/otp/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"msisdn\":\"{number}\"}"
+    },
+    "api_12": {
+      "url": "https://webapi.robi.com.bd/api/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone_number\":\"{number}\",\"type\":\"chat\"}",
+      "method": "post"
+    },
+    "api_13": {
+      "url": "https://api.redx.com.bd/v1/merchant/registration/generate-registration-otp",
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://redx.com.bd",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://redx.com.bd/",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phoneNumber\":\"{number}\"}"
+    },
+    "api_14": {
+      "url": "https://fundesh.com.bd/api/auth/generateOTP",
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=UTF-8",
+        "origin": "https://fundesh.com.bd",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://fundesh.com.bd/fundesh/profile",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
+        "user-agent": "ua1"
+      },
+      "body": "{\"msisdn\":\"{number}\"}"
+    },
+    "api_15": {
+      "url": "https://bikroy.com/api/v1/otp/send",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"phone\":\"{number}\"}"
+    },
+    "api_16": {
+      "url": "https://api.motionview.com.bd/api/send-otp-phone-signup",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_17": {
+      "url": "https://api-dynamic.chorki.com/v2/auth/login",
+      "headers": {
+        "accept": "application/json",
+        "accept-language": "en-US,en;q=0.9",
+        "authorization": "",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://www.chorki.com",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://www.chorki.com/",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}"
+    },
+    "api_18": {
+      "url": "https://user-api.jslglobal.co:444/v2/send-otp",
+      "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://rental.jatri.co",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://rental.jatri.co/",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "cross-site",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"+88{number}\",\"jatri_token\":\"J9vuqzxHyaWa3VaT66NsvmQdmUmwwrHj\"}"
+    },
+    "api_19": {
+      "url": "https://api.englishmojabd.com/api/auth/register",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"+88{number}\",\"password\":\"test@123\"}",
+      "method": "get"
+    },
+    "api_20": {
+      "url": "https://api.deeptoplay.com/v2/auth/login",
+      "headers": {
+        "accept": "application/json",
+        "accept-language": "en-US,en;q=0.9",
+        "authorization": "",
+        "cache-control": "no-cache",
+        "content-type": "application/json",
+        "origin": "https://www.deeptoplay.com",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "referer": "https://www.deeptoplay.com/",
+        "sec-ch-ua": "s_c_u2",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}"
+    },
+    "api_21": {
+      "url": "https://www.bioscopelive.com/en/login/send-otp?phone=88{number}&operator=bd-otp",
+      "headers": {
+        "user-agent": "ua1"
+      },
+      "body": "{}",
+      "method": "post"
+    },
+    "api_22": {
+      "url": "https://ss.binge.buzz/otp/send/login{number}",
+      "headers": {
+        "user-agent": "ua1"
+      },
+      "method": "post"
+    },
+    "api_23": {
+      "url": "https://chokrojan.com/api/v1/passenger/login/mobile",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"mobile_number\":\"{number}\"}"
+    },
+    "api_24": {
+      "url": "https://www.bioscopelive.com/en/login/send-otp?phone=88{number}&operator=bd-otp",
+      "headers": {},
+      "body": "{\"msisdn\":\"88{number}\"}"
+    },
+    "api_25": {
+      "url": "https://ezybank.dhakabank.com.bd/VerifIDExt2/api/CustOnBoarding/VerifyMobileNumber",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"AccessToken\":\"\",\"TrackingNo\":\"\",\"mobileNo\":\"{number}\",\"otpSms\":\"\",\"product_id\":\"250\",\"requestChannel\":\"MOB\",\"trackingStatus\":5}",
+      "method": "post"
+    },
+    "api_26": {
+      "url": "https://fundesh.com.bd/api/auth/generateOTP?service_key=",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"AccessToken\":\"\",\"TrackingNo\":\"\",\"mobileNo\":\"{number}\",\"otpSms\":\"\",\"product_id\":\"250\",\"requestChannel\":\"MOB\",\"trackingStatus\":5}"
+    },
+    "api_27": {
+      "url": "https://applink.com.bd/appstore-v4-server/login/otp/request",
+      "headers": {
+        "User-Agent": "ua4",
+        "Referer": "https://applink.com.bd/",
+        "Content-Type": "application/json",
+        "Origin": "https://applink.com.bd"
+      },
+      "body": "{\"name\":\"Test User\",\"email\":\"test@test.com\",\"mobile\":\"{number}\",\"password\":\"Pass@123\",\"password_confirmation\":\"Pass@123\",\"device_key\":\"9a28ae67c5704e1fcb50a8fc4ghjea4d\"}"
+    },
+    "api_28": {
+      "url": "https://api.motionview.com.bd/api/send-otp-phone-signup",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_29": {
+      "url": "https://api-dynamic.chorki.com/v2/auth/login?country=BD&platform=web&language=en",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_30": {
+      "url": "https://ezybank.dhakabank.com.bd/VerifIDExt2/api/CustOnBoarding/VerifyMobileNumber",
+      "headers": {
+        "Content-Type": "application/json",
+        "User-Agent": "ua4"
+      },
+      "body": "{\"accessinfo\":{\"access_token\":\"K165S6V6q4C6G7H0y9C4f5W7t5YeC6\",\"referenceCode\":\"20190827042622\"}}"
+    },
+    "api_31": {
+      "url": "https://chinaonlinebd.com/api/getOtp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_32": {
+      "url": "https://core.easy.com.bd/api/v1/registration",
+      "headers": {
+        "User-Agent": "ua4",
+        "Referer": "https://easy.com.bd/",
+        "Content-Type": "application/json"
+      },
+      "body": "{\"mobile_no\":\"{number}\"}"
+    },
+    "api_33": {
+      "url": "https://smart1216.robi.com.bd/api/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"cli\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_34": {
+      "url": "https://api.mygp.cinematic.mobi/api/v1/otp/88{number}/SBENT_3GB7D",
+      "headers": {
+        "User-Agent": "ua4",
+        "Content-Type": "application/json"
+      },
+      "body": "{\"phone\":\"88{number}&operator=bd-otp\"}"
+    },
+    "api_35": {
+      "url": "https://api.deeptoplay.com/api/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\",\"language\":\"en\"}",
+      "method": "post"
+    },
+    "api_36": {
+      "url": "https://ss.binge.buzz/otp/send/login{number}",
+      "headers": {
+        "User-Agent": "ua4",
+        "Content-Type": "application/json",
+        "Content-Length": "0"
+      }
+    },
+    "api_37": {
+      "url": "https://applink.com.bd/appstore-v4-server/login/otp/request",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"msisdn\":\"88{number}\"}",
+      "method": "post"
+    },
+    "api_38": {
+      "url": "https://api.mygp.cinematic.mobi/api/v1/otp/88{number}/SBENT_3GB7D",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"accessinfo\":{\"access_token\":\"K165S6V6q4C6G7H0y9C4f5W7t5YeC6\",\"referenceCode\":\"20190827042622\"}}",
+      "method": "post"
+    },
+    "api_39": {
+      "url": "https://bkshopthc.grameenphone.com/api/v1/fwa/request-for-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"phone\":\"{number}\",\"email\":\"\",\"language\":\"en\"}"
+    },
+    "api_40": {
+      "url": "https://www.mcbaffiliate.com/Affiliate/RequestOTP",
+      "headers": {
+        "User-Agent": "ua7",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "body": "{\"mobileNumber\":\"+88{number}\"}"
+    },
+    "api_41": {
+      "url": "https://mithaibd.com/api/login/?lang_code=en\u00c2\u00a4cy_code=BDT",
+      "headers": {
+        "user-agent": "okhttp/4.2.2",
+        "Authorization": "Bearer bWlzNTdAcHJhbmdyb3VwLmNvbTpJWE94N1NVUFYwYUE0Rjg4Nmg4bno5V2I2STUzNTNBQQ==",
+        "Content-Type": "application/json"
+      },
+      "body": "{\"phone\":\"{number}\"}"
+    },
+    "api_42": {
+      "url": "https://rootsedulive.com/api/auth/register",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "user-agent": "ua1"
+      },
+      "body": "name=Test&phone=88{number}&email=test{number}@test.com&password=Pass@123",
+      "method": "post"
+    },
+    "api_43": {
+      "url": "https://mygp.grameenphone.com/api/otp-login",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"msisdn\":\"88{number}\"}",
+      "method": "get"
+    },
+    "api_44": {
+      "url": "https://app.hishabee.business/api/V2/otp/send?mobile_number={number}",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_45": {
+      "url": "https://www.mcbaffiliate.com/Affiliate/RequestOTP",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "user-agent": "ua1"
+      },
+      "body": "PhoneNumber={number}",
+      "method": "post"
+    },
+    "api_46": {
+      "url": "https://mithaibd.com/api/login/?lang_code=en&currency_code=BDT",
+      "headers": {
+        "content-type": "application/json",
+        "Authorization": "Bearer bWlzNTdAcHJhbmdyb3VwLmNvbTpJWE94N1NVUFYwYUE0Rjg4Nmg4bno5V2I2STUzNTNBQQ==",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"company_id\":\"2\",\"phone\":\"{number}\",\"email\":\"user{number}@test.com\",\"password1\":\"Pass@123\",\"password2\":\"Pass@123\",\"user_type\":\"C\",\"currency_code\":\"BDT\",\"lang_code\":\"en\",\"operating_system\":\"Android\",\"otp_verify\":false,\"storefront_id\":\"5\",\"g_id\":\"\"}"
+    },
+    "api_47": {
+      "url": "https://auth.qcoom.com/api/v1/otp/send",
+      "headers": {
+        "User-Agent": "ua4",
+        "Referer": "https://qcoom.com/",
+        "Content-Type": "application/json"
+      },
+      "body": "{\"deviceId\":\"7dtdhid45c0f0901\",\"deviceInfo\":{\"deviceInfoSignature\":\"D0923F3GDHJXJDTIHFDTIGGHURHFATI7605A3FA\",\"deviceId\":\"7d8b0agi0g0f0901\",\"firebaseDeviceToken\":\"\",\"manufacturer\":\"MI\",\"modelName\":\"NOTE 10\",\"osFirmWireBuild\":\"\",\"osName\":\"Android\",\"osVersion\":\"10\",\"rootDevice\":0},\"operator\":\"Gp\",\"walletNumber\":\"{number}\"}"
+    },
+    "api_48": {
+      "url": "https://reseller.circle.com.bd/api/v2/auth/signup",
+      "headers": {
+        "User-Agent": "ua7",
+        "Content-Type": "application/json"
+      },
+      "body": "{\"name\":\"Test\",\"phone\":\"88{number}\",\"email\":\"test{number}@test.com\",\"password\":\"Pass@123\",\"confirmPassword\":\"Pass@123\"}"
+    },
+    "api_49": {
+      "url": "https://moveon.com.bd/api/send-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\"}",
+      "method": "get"
+    },
+    "api_50": {
+      "url": "https://api.toybox.live/bdapps_handler.php",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"Operation\":\"CreateSubscription\",\"MobileNumber\":\"88{number}\",\"PackageID\":100,\"Secret\":\"HJKX71%UHYH\"}",
+      "method": "post"
+    },
+    "api_51": {
+      "url": "https://api.toybox.live/bdapps_handler.php",
+      "headers": {
+        "Content-Type": "application/json",
+        "User-Agent": "ua11"
+      }
+    },
+    "api_52": {
+      "url": "https://api.bdkepler.com/api_middleware-0.0.1-RELEASE/registration-generate-otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"deviceId\":\"7dtdhid45c0f0901\",\"deviceInfo\":{\"deviceInfoSignature\":\"D0923F3GDHJXJDTIHFDTIGGHURHFATI7605A3FA\",\"deviceId\":\"7d8b0agi0g0f0901\",\"firebaseDeviceToken\":\"\",\"manufacturer\":\"MI\",\"modelName\":\"NOTE 10\",\"osFirmWireBuild\":\"\",\"osName\":\"Android\",\"osVersion\":\"10\",\"rootDevice\":0},\"operator\":\"Gp\",\"walletNumber\":\"{number}\"}",
+      "method": "post"
+    },
+    "api_53": {
+      "url": "https://rootsedulive.com/api/forgot-password",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"88{number}\"}",
+      "method": "post"
+    },
+    "api_54": {
+      "url": "https://api.shikho.com/auth/v2/send/sms",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "body": "{\"phone\":\"{number}\",\"type\":\"student\",\"auth_type\":\"signup\",\"vendor\":\"shikho\"}",
+      "method": "post"
+    },
+    "api_55": {
+      "url": "https://api.mygp.cinematic.mobi/api/v1/send-common-otp/88{number}/",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "body": "{}"
+    },
+    "api_56": {
+      "url": "https://www.mcbaffiliate.com/Affiliate/RequestOTP",
+      "headers": {
+        "User-Agent": "ua7",
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    },
+    "api_57": {
+      "url": "https://app.hishabee.business/api/V2/otp/send?mobile_number={number}",
+      "headers": {
+        "User-Agent": "ua4",
+        "Content-Type": "application/json"
+      }
+    },
+    "api_58": {
+      "url": "https://api.osudpotro.com/api/v1/users/send_otp",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      },
+      "method": "post",
+      "body": "{\"mobile\":\"+88-{number}\",\"deviceToken\":\"app\",\"language\":\"bn\",\"os\":\"android\"}"
+    },
+    "api_59": {
+      "url": "https://api.mygp.cinematic.mobi/api/v1/send-common-otp/88{number}/",
+      "headers": {
+        "User-Agent": "ua4",
+        "Content-Type": "application/json"
+      }
+    },
+    "api_60": {
+      "name": "ghoorilearning",
+      "url": "https://api.ghoorilearning.com/api/auth/signup/otp?_app_platform=web",
+      "method": "post",
+      "body": "{\"mobile_no\": \"{number}\"}",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua2"
+      }
+    },
+    "api_61": {
+      "name": "chorki",
+      "url": "https://api-dynamic.chorki.com/v2/auth/login?country=BD&platform=web&language=en",
+      "method": "post",
+      "body": "{\"phone\": \"{number}\"}",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      }
+    },
+    "api_62": {
+      "name": "chinaonlinebd",
+      "url": "https://chinaonlinebd.com/api/login/getOtp?phone={number}",
+      "method": "get",
+      "headers": {
+        "user-agent": "ua1"
+      }
+    },
+    "api_63": {
+      "name": "deeptoplay",
+      "url": "https://api.deeptoplay.com/v2/auth/login?country=BD&platform=web&language=en",
+      "method": "post",
+      "body": "{\"phone\": \"{number}\"}",
+      "headers": {
+        "content-type": "application/json",
+        "user-agent": "ua1"
+      }
+    },
+    "api_64": {
+      "name": "mithai",
+      "url": "https://mithaibd.com/api/login/?lang_code=en&currency_code=BDT",
+      "method": "post",
+      "body": "{\"company_id\": \"2\", \"phone\": \"{number}\", \"email\": \"user{number}@test.com\", \"password1\": \"Pass@123\", \"password2\": \"Pass@123\", \"user_type\": \"C\", \"currency_code\": \"BDT\", \"lang_code\": \"en\", \"operating_system\": \"Android\", \"otp_verify\": false, \"storefront_id\": \"5\", \"g_id\": \"\"}",
+      "headers": {
+        "content-type": "application/json",
+        "Authorization": "Bearer bWlzNTdAcHJhbmdyb3VwLmNvbTpJWE94N1NVUFYwYUE0Rjg4Nmg4bno5V2I2STUzNTNBQQ=="
+      }
+    },
+    "api_65": {
+      "name": "gamehubbd",
+      "url": "https://pay.portal.gamehubbd.com/api/send-otp?phone={number}&game=heroic-rescue&pack=WEEKLY&campaign=suggestion",
+      "method": "get",
+      "headers": {}
+    }
+  }
+}
