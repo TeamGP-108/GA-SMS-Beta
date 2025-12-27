@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+aiohttp
+requests
+urllib3
+pydantic
