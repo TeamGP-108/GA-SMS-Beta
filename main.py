@@ -4,6 +4,8 @@ from typing import Optional, Dict, Any, List
 import requests
 import json
 import asyncio
+import os
+from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor
 import aiohttp
 import urllib3
@@ -17,7 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
+port = os.getenv('PORT')
 # Models
 class APIResult(BaseModel):
     name: str
@@ -395,8 +397,9 @@ if __name__ == "__main__":
     uvicorn.run(
         app,
         host="0.0.0.0",
-        port=60448,
+        port=port,
         log_level="info",
         access_log=True
 
     )
+
