@@ -4,6 +4,13 @@ from typing import Optional, Dict, Any, List
 import requests
 import json
 import asyncio
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from datetime import datetime
+import time
+import psutil
+import os
+from typing import Dict
 import os
 from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor
@@ -48,6 +55,359 @@ class HealthResponse(BaseModel):
 # Global variables to store config
 apis_config: Dict = {}
 variables: Dict = {}
+# Store startup time
+startup_time = time.time()
+
+def get_system_info() -> Dict:
+    """Get system information"""
+    cpu_percent = psutil.cpu_percent(interval=0.1)
+    memory = psutil.virtual_memory()
+    disk = psutil.disk_usage('/')
+    
+    return {
+        "cpu_percent": cpu_percent,
+        "memory_total": memory.total / (1024**3),  # Convert to GB
+        "memory_used": memory.used / (1024**3),
+        "memory_percent": memory.percent,
+        "disk_total": disk.total / (1024**3),
+        "disk_used": disk.used / (1024**3),
+        "disk_percent": disk.percent
+    }
+
+def get_uptime() -> str:
+    """Calculate and format uptime"""
+    uptime_seconds = time.time() - startup_time
+    
+    # Convert to days, hours, minutes, seconds
+    days = int(uptime_seconds // 86400)
+    hours = int((uptime_seconds % 86400) // 3600)
+    minutes = int((uptime_seconds % 3600) // 60)
+    seconds = int(uptime_seconds % 60)
+    
+    if days > 0:
+        return f"{days}d {hours}h {minutes}m {seconds}s"
+    elif hours > 0:
+        return f"{hours}h {minutes}m {seconds}s"
+    elif minutes > 0:
+        return f"{minutes}m {seconds}s"
+    else:
+        return f"{seconds}s"
+
+@app.get("/healthz", response_class=HTMLResponse)
+async def health_check(request: Request):
+    """Beautiful HTML health check endpoint"""
+    
+    # Calculate response time
+    start_time = time.time()
+    
+    # Get system info
+    system_info = get_system_info()
+    uptime = get_uptime()
+    
+    # Calculate response time
+    response_time = (time.time() - start_time) * 1000  # Convert to ms
+    
+    # Get current timestamp
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Determine status color based on response time
+    if response_time < 100:
+        status_color = "#10B981"  # Green
+        status_text = "Excellent"
+    elif response_time < 300:
+        status_color = "#F59E0B"  # Yellow
+        status_text = "Good"
+    else:
+        status_color = "#EF4444"  # Red
+        status_text = "Slow"
+    
+    # Determine CPU color
+    cpu_color = "#10B981" if system_info["cpu_percent"] < 70 else "#EF4444"
+    # Determine Memory color
+    mem_color = "#10B981" if system_info["memory_percent"] < 80 else "#EF4444"
+    # Determine Disk color
+    disk_color = "#10B981" if system_info["disk_percent"] < 80 else "#EF4444"
+    
+    # HTML with beautiful design
+    html_content = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Health Dashboard</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * {{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }}
+            
+            body {{
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }}
+            
+            .dashboard {{
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                padding: 40px;
+                width: 100%;
+                max-width: 800px;
+            }}
+            
+            .header {{
+                text-align: center;
+                margin-bottom: 40px;
+            }}
+            
+            .header h1 {{
+                color: #333;
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 10px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }}
+            
+            .status-badge {{
+                display: inline-block;
+                padding: 8px 20px;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 1.2rem;
+                margin: 10px 0;
+                background-color: {status_color};
+                color: white;
+            }}
+            
+            .metrics-grid {{
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }}
+            
+            .metric-card {{
+                background: white;
+                border-radius: 15px;
+                padding: 25px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }}
+            
+            .metric-card:hover {{
+                transform: translateY(-5px);
+            }}
+            
+            .metric-title {{
+                font-size: 0.9rem;
+                color: #666;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }}
+            
+            .metric-value {{
+                font-size: 2rem;
+                font-weight: 700;
+                color: #333;
+                margin-bottom: 5px;
+            }}
+            
+            .metric-subtext {{
+                font-size: 0.9rem;
+                color: #888;
+            }}
+            
+            .progress-bar {{
+                width: 100%;
+                height: 8px;
+                background: #e0e0e0;
+                border-radius: 4px;
+                margin-top: 15px;
+                overflow: hidden;
+            }}
+            
+            .progress-fill {{
+                height: 100%;
+                border-radius: 4px;
+                transition: width 0.3s ease;
+            }}
+            
+            .info-section {{
+                background: #f8f9fa;
+                border-radius: 15px;
+                padding: 25px;
+                margin-top: 30px;
+            }}
+            
+            .info-grid {{
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }}
+            
+            .info-item {{
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 0;
+                border-bottom: 1px solid #e0e0e0;
+            }}
+            
+            .info-label {{
+                color: #666;
+                font-weight: 500;
+            }}
+            
+            .info-value {{
+                color: #333;
+                font-weight: 600;
+            }}
+            
+            .timestamp {{
+                text-align: center;
+                color: #888;
+                font-size: 0.9rem;
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #e0e0e0;
+            }}
+            
+            @media (max-width: 768px) {{
+                .dashboard {{
+                    padding: 20px;
+                }}
+                
+                .header h1 {{
+                    font-size: 2rem;
+                }}
+                
+                .metrics-grid {{
+                    grid-template-columns: 1fr;
+                }}
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="dashboard">
+            <div class="header">
+                <h1>🏥 Health Dashboard</h1>
+                <div class="status-badge">{status_text}</div>
+                <p>Real-time system monitoring and performance metrics</p>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Response Time</div>
+                    <div class="metric-value" style="color: {status_color};">{response_time:.2f} ms</div>
+                    <div class="metric-subtext">API Processing Time</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {min(response_time/10, 100)}%; background: {status_color};"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-title">System Uptime</div>
+                    <div class="metric-value">{uptime}</div>
+                    <div class="metric-subtext">Continuous Operation</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%; background: #10B981;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">CPU Usage</div>
+                    <div class="metric-value" style="color: {cpu_color};">{system_info["cpu_percent"]:.1f}%</div>
+                    <div class="metric-subtext">Processor Load</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {system_info["cpu_percent"]}%; background: {cpu_color};"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-title">Memory Usage</div>
+                    <div class="metric-value" style="color: {mem_color};">{system_info["memory_percent"]:.1f}%</div>
+                    <div class="metric-subtext">{system_info["memory_used"]:.1f} GB / {system_info["memory_total"]:.1f} GB</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {system_info["memory_percent"]}%; background: {mem_color};"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-title">Disk Usage</div>
+                    <div class="metric-value" style="color: {disk_color};">{system_info["disk_percent"]:.1f}%</div>
+                    <div class="metric-subtext">{system_info["disk_used"]:.1f} GB / {system_info["disk_total"]:.1f} GB</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {system_info["disk_percent"]}%; background: {disk_color};"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Service Status:</span>
+                        <span class="info-value" style="color: {status_color};">Operational ✓</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Requests Handled:</span>
+                        <span class="info-value">Active</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Environment:</span>
+                        <span class="info-value">{os.getenv("ENVIRONMENT", "development").title()}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Server Time:</span>
+                        <span class="info-value">{current_time}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timestamp">
+                Last checked: {current_time} | Auto-refresh every 30 seconds
+            </div>
+        </div>
+        
+        <script>
+            // Auto-refresh the page every 30 seconds
+            setTimeout(function() {{
+                location.reload();
+            }}, 30000);
+            
+            // Add some animations
+            document.addEventListener('DOMContentLoaded', function() {{
+                const cards = document.querySelectorAll('.metric-card');
+                cards.forEach((card, index) => {{
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {{
+                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }}, index * 100);
+                }});
+            }});
+        </script>
+    </body>
+    </html>
+    """
+    
+    return HTMLResponse(content=html_content)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -402,4 +762,5 @@ if __name__ == "__main__":
         access_log=True
 
     )
+
 
