@@ -5,20 +5,20 @@ import requests
 import json
 import asyncio
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from datetime import datetime
-import time
-import psutil
+#from fastapi.responses import HTMLResponse
+#from datetime import datetime
+#import time
+#import psutil
+#import os
+#from typing import Dict
 import os
-from typing import Dict
-import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor
-import aiohttp
-import urllib3
-from pydantic import BaseModel, Field
-import uvicorn
-from contextlib import asynccontextmanager
+#import aiohttp
+#import urllib3
+#from pydantic import BaseModel, Field
+#import uvicorn
+#from contextlib import asynccontextmanager
 import logging
 
 # Setup logging
@@ -739,20 +739,20 @@ async def call_apis_sync_version(apis: List[Dict[str, Any]]) -> List[APIResult]:
             )
     
     # Use ThreadPoolExecutor for concurrent synchronous calls
-    with ThreadPoolExecutor(max_workers=20) as executor:
+    #with ThreadPoolExecutor(max_workers=20) as executor:
         loop = asyncio.get_event_loop()
         tasks = [loop.run_in_executor(executor, call_api_sync_wrapper, api) for api in apis]
         results = await asyncio.gather(*tasks)
     
-    return results
+    #return results
 
-if __name__ == "__main__":
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=port,
-        log_level="info",
-        access_log=True
+#if __name__ == "__main__":
+    #uvicorn.run(
+        #app,
+        #host="0.0.0.0",
+        #port=port,
+        #log_level="info",
+        #access_log=True
 
     )
 
